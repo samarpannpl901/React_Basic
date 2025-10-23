@@ -7,7 +7,7 @@
      I have not made my work available to anyone else."-->
     <meta charset="UTF-8" />
     <title>Deck of Cards</title>
-    
+
     <!-- React and Babel -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -15,48 +15,48 @@
 
 
     <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #0f172a;
-      color: #f8fafc;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2200fc5d;
+            color: #f8fafc;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
 
-    h1 {
-      margin-bottom: 20px;
-    }
+        h1 {
+            margin-bottom: 20px;
+        }
 
-    /* Deck box */
-    #deck {
-      width: 200px;
-      height: 280px;
-      background-color: #1e293b;
-      border: 2px solid #475569;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 20px auto;
-    }
+        /* Deck box */
+        #deck {
+            width: 200px;
+            height: 280px;
+            background-color: #91414182;
+            border: 2px solid #76c02c;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+        }
 
-    /* Buttons layout */
-    div button {
-      background-color: #111827;
-      border: 1px solid #334155;
-      color: #f8fafc;
-      padding: 10px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      margin: 5px;
-      font-weight: 600;
-    }
+        /* Buttons layout */
+        div button {
+            background-color: #00e9fe;
+            border: 1px solid #334155;
+            color: #b75e5e;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-weight: 600;
+        }
 
-    button:hover {
-      background-color: #1e293b;
-    }
-  </style>
+        button:hover {
+            background-color: #f3f3f3;
+        }
+    </style>
 </head>
 
 <body>
@@ -64,13 +64,19 @@
     <script type="text/babel">
 
         function MyApp() {
+            // Created a variable for the text on the deck
+            const [message, setMessage] = React.useState("Deck");
+            // creat a function that will run when i click the deck
+            function handleDeckClick() {
+                setMessage("Deck Clicked");
+            }
             return (
                 <div>
                     <h1>Deck of Cards</h1>
                     {/* Deck placeholder*/}
-                    <div className="deck">Deck</div>
+                    <div id="deck" onClick={handleDeckClick}>Deck</div>
                     {/* 6 button*/}
-                    <div className="buttons">
+                    <div>
                         <button>Deal 5</button>
                         <button>Deal 7</button>
                         <button>Reset</button>
