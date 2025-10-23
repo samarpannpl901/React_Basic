@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <!--"StAuth10244: I Samarpan Nepal, 000933008 certify that this material is my original work.
       No other person's work has been used without due acknowledgement.
      I have not made my work available to anyone else."-->
     <meta charset="UTF-8" />
-    <title>deck of cards</title>
+    <title>Deck of Cards</title>
     <!-- React and Babel -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="root"></div>
     <script type="text/babel">
-    
-      function MyApp() {
-        return <h1>Deck of Cards</h1>;
-      }
 
-      const container = document.getElementById('root');
-      const root = ReactDOM.createRoot(container);
-      root.render(<MyApp />);
+        function MyApp() {
+            return (
+                <div>
+                    <h1>Deck of Cards</h1>
+                    // Deck placeholder
+                    <div className="deck">Deck</div>
+                    //button for 
+                    <div className="buttons">
+                        <button>Deal 5</button>
+                        <button>Deal 7</button>
+                        <button>Reset</button>
+                        <button>Toss</button>
+                        <button>Wildcard</button>
+                        <button>Regroup</button>
+                    </div>
+                </div>
+
+            );
+        }
+
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<MyApp />);
 
     </script>
-  </body>
+</body>
+
 </html>
