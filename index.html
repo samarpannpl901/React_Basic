@@ -37,6 +37,7 @@
             border-radius: 12px;
             display: flex;
             align-items: center;
+            font-size: 60px;
             justify-content: center;
             margin: 20px auto;
         }
@@ -67,6 +68,9 @@
             // Created a variable for the text on the deck
             const [message, setMessage] = React.useState("deck");
 
+            // array for showing cards
+            const [cards, setCards] = React.useState([]);
+
             // array of suits and values
             const suits = ["♥", "♦", "♣", "♠"];
             const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
@@ -80,7 +84,7 @@
             function handleDeckClick() {
                 const randomSuit = randomItem(suits);
                 const randomValue = randomItem(values);
-                setMessage(`${randomValue}${randomSuit}`);
+                setMessage(randomValue + randomSuit);
             }
             return (
                 <div>
@@ -96,6 +100,8 @@
                         <button>Wildcard</button>
                         <button>Regroup</button>
                     </div>
+                    {/* Show cards text here */}
+                    <p>{cardsText || "No cards dealt yet"}</p>
                 </div>
 
             );
