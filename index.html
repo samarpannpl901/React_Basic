@@ -69,7 +69,7 @@
             const [message, setMessage] = React.useState("deck");
 
             // array for showing cards
-            const [cards, setCards] = React.useState([]);
+            const [cardsText, setCards] = React.useState("");
 
             // array of suits and values
             const suits = ["♥", "♦", "♣", "♠"];
@@ -88,12 +88,13 @@
             }
 
             function dealCards(number) {
-                let newCards = cardsText;
+                let newCards = "";
                 for (let i = 0; i <= number; i++) {
-                    const suit = randomItem(values);
-                    const value = randomItem(suits);
+                    const suit = randomItem(suits);
+                    const value = randomItem(values);
                     newCards += value + suit + "  ";
                 }
+                setCardsText(newCards);
 
             }
 
@@ -105,16 +106,17 @@
                     <div id="deck" onClick={handleDeckClick}>{message}</div>
                     {/* 6 button*/}
                     <div>
-                        <button onClick={dealCards} >Deal 5</button>
-                        <button onClick={dealCards} >Deal 7</button>
+                        <button onClick={() => dealCards} >Deal 5</button>
+                        <button onClick={() => dealCards} >Deal 7</button>
                         <button>Reset</button>
                         <button>Toss</button>
                         <button>Wildcard</button>
                         <button>Regroup</button>
                     </div>
-                    
+                    <div>
                     {/* Show cards text here */}
                     <p>{cardsText || "No cards dealt yet"}</p>
+                    </div>
                 </div>
 
             );
