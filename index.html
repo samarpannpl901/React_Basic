@@ -118,6 +118,7 @@
 
                 setDeck(newDeck);
                 setCardsText([...cardsText, card]);
+                setMessage(card.value + card.suit);
             }
             // function for dealing the cards
             function dealCards(amount) {
