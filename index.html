@@ -75,27 +75,59 @@
             const suits = ["♥", "♦", "♣", "♠"];
             const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 
+            // create all 52 cards
+            function makeFullDeck() {
+                const allCards = [];
+                for (let s of suits) {
+                    for (let v of values) {
+                        allCards.push({ suit: s, value: v });
+                    }
+                }
+                return allCards;
+            }
+
+            // for the 52 card in the deck
+            const [deck, setDeck] = React.useState(makeFullDeck());
+
             // Function to get a random item from the array
-            function randomItem(array) {
-                return array[Math.floor(Math.random() * array.length)];
+            function randomIndex(array) {
+                return Math.floor(Math.random() * array.length);
             }
 
             // creat a function that will run when i click the deck
             function handleDeckClick() {
-                const randomSuit = randomItem(suits);
-                const randomValue = randomItem(values);
-                setMessage(randomValue + randomSuit);
+                if (deck.length === 0) {
+                    setMessage("No cards remaining");
+                    return;
+                }
+
+                const index = randomIndex(deck);
+                const card = deck[index];
+                const newDeck = [...deck];
+                newDeck.splice(index, 1); // remove card from deck
+
+                setDeck(newDeck);
+                setCardsText([...cardsText, card]);
             }
             // function for dealing the cards
-            function dealCards(number) {
-                let newCards = [];
-                for (let i = 0; i <= number; i++) {
-                    const suit = randomItem(suits);
-                    const value = randomItem(values);
-                    newCards.push(value + suit);
+            function dealCards(amount) {
+                if (deck.length < amount) {
+                    setMessage("Not enough cards left!");
+                    return;
                 }
-                setCardsText(newCards);
 
+                const newDeck = [...deck];
+                const chosenCards = [];
+
+                for (let i = 0; i < amount; i++) {
+                    const index = randomIndex(newDeck);
+                    chosenCards.push(newDeck[index]);
+                    newDeck.splice(index, 1);
+                }
+
+                setDeck(newDeck);
+                setCardsText(chosenCards);
+                setMessage("Deck");
             }
 
 
@@ -114,14 +146,19 @@
                         <button>Regroup</button>
                     </div>
                     <div>
-                        {cardsText.length > 0 ? (
-                            <ul>
-                                {cardsText.map((card, index) => (
-                                    <li key={index}>{card}</li>
-                                ))}
-                            </ul>
-                        ) : (<p>No cards dealt yet</p> )
-                    }
+                        {cardsText.length === 0 ? (
+                            <p>No cards dealt yet</p>
+                        ) : (
+                            cardsText.map((c, i) => (
+                                <span
+                                    key={i}
+                                    className="card"
+                                    style={{ color: c.suit === "♥" || c.suit === "♦" ? "red" : "black" }}
+                                >
+                                    {c.value} {c.suit}
+                                </span>
+                            ))
+                        )}
                     </div>
                 </div>
 
