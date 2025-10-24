@@ -86,6 +86,18 @@
                 const randomValue = randomItem(values);
                 setMessage(randomValue + randomSuit);
             }
+
+            function dealCards(number) {
+                let newCards = cardsText;
+                for (let i = 0; i <= number; i++) {
+                    const suit = randomItem(values);
+                    const value = randomItem(suits);
+                    newCards += value + suit + "  ";
+                }
+
+            }
+
+
             return (
                 <div>
                     <h1>Deck of Cards</h1>
@@ -93,13 +105,14 @@
                     <div id="deck" onClick={handleDeckClick}>{message}</div>
                     {/* 6 button*/}
                     <div>
-                        <button>Deal 5</button>
-                        <button>Deal 7</button>
+                        <button onClick={dealCards} >Deal 5</button>
+                        <button onClick={dealCards} >Deal 7</button>
                         <button>Reset</button>
                         <button>Toss</button>
                         <button>Wildcard</button>
                         <button>Regroup</button>
                     </div>
+                    
                     {/* Show cards text here */}
                     <p>{cardsText || "No cards dealt yet"}</p>
                 </div>
