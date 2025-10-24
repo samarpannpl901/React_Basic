@@ -140,6 +140,13 @@
                 setMessage("Deck");
             }
 
+            // function for reset all the deta
+            function resetDeck() {
+                setDeck(makeFullDeck());  // refill 52 cards
+                setCardsText([]);         // clear drawn cards
+                setMessage("Deck");       // reset deck label
+            }
+
 
             return (
                 <div>
@@ -150,7 +157,7 @@
                     <div>
                         <button onClick={() => dealCards(5)} >Deal 5</button>
                         <button onClick={() => dealCards(7)} >Deal 7</button>
-                        <button>Reset</button>
+                        <button  onClick={resetDeck}>Reset</button>
                         <button>Toss</button>
                         <button>Wildcard</button>
                         <button>Regroup</button>
