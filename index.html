@@ -232,13 +232,14 @@
                 setPickedIdx(null);
             }
 
+            //funtion for wildcard
             function wildcard() {
-                const randomSuit = suits[randomIndex];
-                const randomValue = values[randomIndex];
-                const newCard = { suit: randomSuit, value: randomValue };
+                const randomSuit = suits[randomIndex(suits)];
+                const randomValue = values[randomIndex(values)];
 
-                
-               setCardsText([newCard]);
+                const newCard = { suit: randomSuit, value: randomValue };
+                setCardsText([...cardsText, newCard]);
+                setPickedIdx(null);
             }
 
 
