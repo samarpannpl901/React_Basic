@@ -163,6 +163,28 @@
                 setMessage("Deck");       // reset deck label
             }
 
+            const [pickedIdx, setPickedIdx] = React.useState(null);
+
+            function handleCardClick(index) {
+                if (pickedIdx === null) {
+                    // Nothing selected yet → pick this one
+                    setPickedIdx(index);
+                } else if (pickedIdx === index) {
+                    // Clicked same card → unpick
+                    setPickedIdx(null);
+                } else {
+                    // Different card clicked while one picked → swap them
+                    const newCards = cardsText;
+                    [newCards[pickedIdx], newCards[index]] = [newCards[index], newCards[pickedIdx]];
+                    setCardsText(newCards);
+                    setPickedIdx(null);
+                }
+            }
+
+
+
+
+
 
             return (
                 <div>
