@@ -212,21 +212,24 @@
 
             //function for random shuffle
             function shuffle(array) {
-                for (let i = array.length - 1; i > 0; i--) {
+                const newArr = [...array];
+                for (let i = newArr.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
-                    [array[i], array[j]] = [array[j], array[i]];
+                    [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
                 }
-                return array;
+                return newArr;
             }
+
 
             //function for regroup
             function regroup() {
-                if (deck.length === 0) {
+                if (cardsText.length === 0) {
                     alert("No cards to regroup!");
                     return;
                 }
-                const shuffled = shuffle(deck);
-                setDeck(shuffled);
+                const shuffled = shuffle(cardsText);
+                setCardsText(shuffled);
+                setPickedIdx(null);
             }
 
             return (
