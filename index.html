@@ -232,6 +232,16 @@
                 setPickedIdx(null);
             }
 
+            function wildcard() {
+                const randomSuit = suits[randomIndex];
+                const randomValue = values[randomIndex];
+                const newCard = { suit: randomSuit, value: randomValue };
+
+                
+               setCardsText([newCard]);
+            }
+
+
             return (
                 <div>
                     <h1>Deck of Cards</h1>
@@ -243,7 +253,7 @@
                         <button onClick={() => dealCards(7)} >Deal 7</button>
                         <button onClick={resetDeck}>Reset</button>
                         <button onClick={tossCard}>Toss</button>
-                        <button>Wildcard</button>
+                        <button onClick={wildcard}>Wildcard</button>
                         <button onClick={regroup}>Regroup</button>
                     </div>
                     <div>
