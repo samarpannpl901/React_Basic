@@ -179,7 +179,7 @@
             }
 
             const [pickedIdx, setPickedIdx] = React.useState(null);
-            
+
             // function to swap the cards
             function handleCardClick(index) {
                 if (pickedIdx === null) {
@@ -210,9 +210,24 @@
                 setPickedIdx(null);
             }
 
+            //function for random shuffle
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
 
-
-
+            //function for regroup
+            function regroup() {
+                if (deck.length === 0) {
+                    alert("No cards to regroup!");
+                    return;
+                }
+                const shuffled = shuffle(deck);
+                setDeck(shuffled);
+            }
 
             return (
                 <div>
@@ -226,7 +241,7 @@
                         <button onClick={resetDeck}>Reset</button>
                         <button onClick={tossCard}>Toss</button>
                         <button>Wildcard</button>
-                        <button>Regroup</button>
+                        <button onClick={regroup}>Regroup</button>
                     </div>
                     <div>
                         {cardsText.length === 0 ? (
