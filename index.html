@@ -74,6 +74,21 @@
     <div id="root"></div>
     <script type="text/babel">
 
+        // card component
+        function Card({ suit, value, picked, onClick }) {
+            return (
+                <span
+                    className={`card ${picked ? "picked" : ""}`}
+                    onClick={onClick}
+                    style={{
+                        color: suit === "♥" || suit === "♦" ? "red" : "black"
+                    }}
+                >
+                    {value} {suit}
+                </span>
+            );
+        }
+
         function MyApp() {
             // Created a variable for the text on the deck
             const [message, setMessage] = React.useState("deck");
@@ -158,7 +173,7 @@
                     <div>
                         <button onClick={() => dealCards(5)} >Deal 5</button>
                         <button onClick={() => dealCards(7)} >Deal 7</button>
-                        <button  onClick={resetDeck}>Reset</button>
+                        <button onClick={resetDeck}>Reset</button>
                         <button>Toss</button>
                         <button>Wildcard</button>
                         <button>Regroup</button>
@@ -168,15 +183,15 @@
                             <p>No cards dealt yet</p>
                         ) : (
                             cardsText.map((c, i) => (
-                                <span
+                                <Card
                                     key={i}
-                                    className="card"
-                                    style={{ color: c.suit === "♥" || c.suit === "♦" ? "red" : "black" }}
-                                >
-                                    {c.value} {c.suit}
-                                </span>
+                                    suit={c.suit}
+                                    value={c.value}
+                                    onClick={() => console.log(`Clicked ${c.value}${c.suit}`)}
+                                />
                             ))
                         )}
+
                     </div>
                 </div>
 
