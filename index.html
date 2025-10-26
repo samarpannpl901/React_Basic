@@ -17,7 +17,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #2200fc5d;
+            background-color: #6143435d;
             color: #f8fafc;
             text-align: center;
             margin: 0;
@@ -61,11 +61,26 @@
         .card {
             display: inline-block;
             background: white;
-            border: 1px solid black;
-            border-radius: 5px;
-            padding: 6px 10px;
-            margin: 5px;
+            border: 2px solid black;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin: 8px;
             font-weight: bold;
+            font-size: 22px;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.15s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+        }
+
+
+        .picked {
+            border: 3px solid #00e9fe;
+            box-shadow: 0 0 10px #00e9fe;
         }
     </style>
 </head>
@@ -167,14 +182,14 @@
 
             function handleCardClick(index) {
                 if (pickedIdx === null) {
-                    // Nothing selected yet → pick this one
+                    // Nothing selected yet pick this one
                     setPickedIdx(index);
                 } else if (pickedIdx === index) {
-                    // Clicked same card → unpick
+                    // Clicked same card unpick
                     setPickedIdx(null);
                 } else {
                     // Different card clicked while one picked → swap them
-                    const newCards = cardsText;
+                    const newCards = [...cardsText];
                     [newCards[pickedIdx], newCards[index]] = [newCards[index], newCards[pickedIdx]];
                     setCardsText(newCards);
                     setPickedIdx(null);
@@ -209,7 +224,7 @@
                                     key={i}
                                     suit={c.suit}
                                     value={c.value}
-                                    onClick={() => console.log(`Clicked ${c.value}${c.suit}`)}
+                                    onClick={() => handleCardClick(i)}
                                 />
                             ))
                         )}
