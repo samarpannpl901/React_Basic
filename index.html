@@ -179,7 +179,8 @@
             }
 
             const [pickedIdx, setPickedIdx] = React.useState(null);
-
+            
+            // function to swap the cards
             function handleCardClick(index) {
                 if (pickedIdx === null) {
                     // Nothing selected yet pick this one
@@ -188,14 +189,26 @@
                     // Clicked same card unpick
                     setPickedIdx(null);
                 } else {
-                    // Different card clicked while one picked → swap them
+                    // Different card clicked while one picked swap them
                     const newCards = [...cardsText];
                     [newCards[pickedIdx], newCards[index]] = [newCards[index], newCards[pickedIdx]];
                     setCardsText(newCards);
                     setPickedIdx(null);
                 }
             }
+            // function to toss the card
+            function tossCard() {
+                if (pickedIdx === null) {
+                    alert("Select a card to toss!");
+                    return;
+                }
 
+                const newCards = [...cardsText];
+                newCards.splice(pickedIdx + 1, 1);
+
+                setCardsText(newCards);
+                setPickedIdx(null);
+            }
 
 
 
@@ -211,7 +224,7 @@
                         <button onClick={() => dealCards(5)} >Deal 5</button>
                         <button onClick={() => dealCards(7)} >Deal 7</button>
                         <button onClick={resetDeck}>Reset</button>
-                        <button>Toss</button>
+                        <button onClick={tossCard}>Toss</button>
                         <button>Wildcard</button>
                         <button>Regroup</button>
                     </div>
@@ -224,6 +237,7 @@
                                     key={i}
                                     suit={c.suit}
                                     value={c.value}
+                                    picked={pickedIdx === i}
                                     onClick={() => handleCardClick(i)}
                                 />
                             ))
